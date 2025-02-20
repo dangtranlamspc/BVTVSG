@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Image, Dimensions, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { CTGDModel } from '../../models/CTGDModel';
 import { CartItem, cartSelector } from '../../redux/reducers/cartReducer';
@@ -53,7 +53,7 @@ const ProductsCTGDScreenDetail = ({navigation, route}: any) => {
             right: 0,
             left: 0,
             padding: 20,
-            paddingTop: 50
+            paddingTop: Platform.OS === 'ios' ? 50 : 30,
           }}>
           <Row
             styles={{backgroundColor: 'transparent'}}
@@ -101,7 +101,6 @@ const ProductsCTGDScreenDetail = ({navigation, route}: any) => {
         </Section>
         <ScrollView
           style={[
-            
             globalStyles.container,
 
             {backgroundColor: 'white', flexGrow: 1, paddingTop: 90},

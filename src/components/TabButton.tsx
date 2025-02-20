@@ -1,31 +1,30 @@
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native'
-import React, { useEffect, useRef } from 'react'
-import Material from 'react-native-vector-icons/MaterialCommunityIcons'
-import { opacity } from 'react-native-reanimated/lib/typescript/Colors'
+import {TouchableOpacity, StyleSheet, Animated, Platform} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const TabButton = ({item,accessibilityState, onPress} : any) => {
   const animatedValues = {
     translate : useRef(new Animated.Value(0)).current,
     scale : useRef(new Animated.Value(0)).current,
-  }
+  };
 
   const {translate,scale} = animatedValues
 
   useEffect(() => {
     handleAnimated()
-  }, [accessibilityState.selected])
+  }, [accessibilityState.selected]);
 
   const handleAnimated = () => {
     Animated.parallel([
       Animated.timing(translate , {
         toValue : accessibilityState.selected ? 1 : 0,
         duration : 400,
-        useNativeDriver : false
+        useNativeDriver : false,
       }),
       Animated.timing(scale, {
         toValue : accessibilityState.selected ? 1 : 0 ,
         duration : 250,
-        useNativeDriver: false
+        useNativeDriver: false,
       })
     ]).start()
   }
@@ -36,12 +35,12 @@ const TabButton = ({item,accessibilityState, onPress} : any) => {
         translateY : translate.interpolate({
           inputRange : [0 , 1],
           outputRange : [0, -30],
-          extrapolate : 'clamp'
+          extrapolate : 'clamp',
         })
       }
     ]
   }
-  
+
   const scaleStyles = {
     opacity : scale.interpolate({
       inputRange : [.5, 1],
@@ -58,14 +57,14 @@ const TabButton = ({item,accessibilityState, onPress} : any) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
        <Animated.View style={[styles.button, translateStyles]}>
-          <Animated.View 
+          <Animated.View
             style={[{
-              width : 50, 
-              height : 50 , 
-              borderRadius : 100, 
+              width : 50,
+              height : 50 ,
+              borderRadius : 100,
               position : 'absolute',
-              backgroundColor : '#0d6efd'
-            }, scaleStyles]} 
+              backgroundColor : '#0d6efd',
+            }, scaleStyles]}
           />
           <Material name={item.icon} color={accessibilityState.selected ? '#fff' : '#fff'} size={30} />
        </Animated.View>
@@ -73,10 +72,10 @@ const TabButton = ({item,accessibilityState, onPress} : any) => {
   )
 }
 
-export default TabButton
+export default TabButton;
 const styles = StyleSheet.create({
     container : {
-        flex : 1,
+        flex : Platform.OS === 'ios' ? 0 : 1,
         justifyContent : 'center',
         alignItems :'center',
         height : 70,
@@ -90,6 +89,6 @@ const styles = StyleSheet.create({
         borderColor : '#0a58ca',
         justifyContent : 'center',
         alignItems: 'center',
-        overflow : 'hidden'
+        overflow : 'hidden',
     }
 })

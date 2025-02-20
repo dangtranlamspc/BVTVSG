@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "628405338463",
+    "project_id": "admin-thuocbvtvsg-app",
+    "storage_bucket": "admin-thuocbvtvsg-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628405338463:android:cb76bd66e3ead56259f6ea",
+        "android_client_info": {
+          "package_name": "com.bvtvsg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628405338463-n7eoqu5lkcj5rp007hh7mtb0lknlt0oc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bvtvsg",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "628405338463-ijh9eidk5iq18tkhafoan78s7seqb2c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh0Gq5rZIpiFFN86ag-s_F31ocQhZM328"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628405338463-igtn3vlks4u9ao30o9cf5911gnskpj20.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "628405338463-8pehfoh4c6g907oqluai37nmsv1fgea5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dangtranlam.SPC"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

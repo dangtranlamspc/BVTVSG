@@ -1,15 +1,18 @@
-import { View, Text, useWindowDimensions, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native'
+import { View, Text, useWindowDimensions, TouchableOpacity, ScrollView, Image, Dimensions, StyleSheet, Platform, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { BSCTModel } from '../../models/BSCTModel';
 import { useNavigation } from '@react-navigation/native';
 import { bsctRef } from '../../firebase/firebaseConfig';
-import { Card, Col, globalStyles, Row, Section, Tabbar } from '@bsdaoquang/rncomponent';
+import { Button, Card, Col, globalStyles, Row, Section, Tabbar } from '@bsdaoquang/rncomponent';
 import { colors } from '../../contants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fontFamilies } from '../../contants/fontFamilies';
 import { TextComponents } from '../../components';
 import RenderHTML from 'react-native-render-html';
 import WebView from 'react-native-webview';
+import { HambergerMenu } from 'iconsax-react-native';
+import { useSelector } from 'react-redux';
+import { authSelector } from '../../redux/reducers/authReducer';
 
 const BSCTScreen = () => {
   const [bscts, setBSCTs] = useState<BSCTModel[]>([]);
@@ -17,6 +20,8 @@ const BSCTScreen = () => {
     const navigation: any = useNavigation();
   
     const {width} = useWindowDimensions();
+
+    const user = useSelector(authSelector);
     
     useEffect(() => {
         bsctRef
@@ -47,9 +52,9 @@ const BSCTScreen = () => {
             right: 0,
             left: 0,
             padding: 20,
-            paddingTop: 50
+            paddingTop: Platform.OS === 'ios' ? 50 : 30,
           }}>
-          <Row
+          {/* <Row
             styles={{backgroundColor: 'transparent'}}
             justifyContent="space-between">
             <TouchableOpacity
@@ -78,7 +83,51 @@ const BSCTScreen = () => {
                 renderSeemore={<TextComponents text="" color={colors.gray800} />}
                 onSeeMore={() => navigation.navigate('BSCTScreen')}
               />
-          </Row>
+          </Row> */}
+          <Row justifyContent="space-between">
+          <Button
+            styles={{
+              width: 48,
+              height: 48,
+            }}
+            icon={<HambergerMenu size={24} color="white" />}
+            color={colors.blue600}
+            onPress={() => navigation.openDrawer()}
+          />
+          {/* <Avatar/> */}
+          <TouchableOpacity
+            onPress={() => {
+              navigation.closeDrawer();
+              navigation.navigate('ProfilesScreen', {
+                screen: 'ProfilesScreen',
+              });
+            }}>
+            {user.photoUrl ? (
+              <Image
+                source={{uri: user.photoUrl}}
+                style={[localStyles.avatar]}
+              />
+            ) : (
+              <View
+                style={[localStyles.avatar, {backgroundColor: colors.blue600}]}>
+                <TextComponents
+                  size={22}
+                  color={colors.white}
+                  text={
+                    user.displayName
+                      ? user.displayName
+                          .split(' ')
+                          [user.displayName.split(' ').length - 1].substring(
+                            0,
+                            1,
+                          )
+                      : ''
+                  }
+                />
+              </View>
+            )}
+          </TouchableOpacity>
+        </Row>
         </Section>
       <ScrollView>
         <View style={{flex: 1,paddingTop:110}}>
@@ -135,3 +184,29 @@ const BSCTScreen = () => {
 }
 
 export default BSCTScreen
+
+const localStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    paddingVertical: Platform.OS === 'android' ? StatusBar.currentHeight : 48,
+  },
+
+  avatar: {
+    width: 52,
+    height: 52,
+    borderRadius: 100,
+    marginBottom: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  listItem: {
+    paddingVertical: 12,
+    justifyContent: 'flex-start',
+  },
+
+  listItemText: {
+    paddingLeft: 12,
+  },
+});

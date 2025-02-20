@@ -1,8 +1,8 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 export const sizes = {
-    width : Dimensions.get('window').width,
-    height : Dimensions.get('window').height,
+    width : Platform.OS === 'ios' ? Dimensions.get('window').width : Dimensions.get('window').width,
+    height : Platform.OS === 'ios' ? Dimensions.get('window').height : Dimensions.get('screen').height,
     bigTitle : 18,
     title : 16,
     description : 12,

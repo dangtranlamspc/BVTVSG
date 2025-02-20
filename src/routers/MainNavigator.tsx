@@ -1,13 +1,16 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TabNavigator from './TabNavigator';
 import ProductDetail from '../screens/products/ProductDetail';
 import FilterScreen from '../screens/home/FilterScreen';
 import ResultScreen from '../screens/home/ResultScreen';
 import ProductScreen from '../screens/products/ProductScreen';
 import BSCTDetail from '../screens/bsct/BSCTDetail';
-import { BSCTScreen, ProductConTrungGiaDungScreen, ProductsNongNghiepDoThiScreen, ProfilesScreen } from '../screens';
+import {
+    BSCTScreen,
+    ProductConTrungGiaDungScreen,
+    ProductsNongNghiepDoThiScreen,
+    ProfilesScreen,
+} from '../screens';
 import ProductsNewScreen from '../screens/products/ProductsNewScreen';
 import DrawerNavigator from './DrawerNavigator';
 import ProductsNongNghiepDoThiDetailScreen from '../screens/nongnghiepdothi/ProductsNongNghiepDoThiDetailScreen';
@@ -20,7 +23,7 @@ const MainNavigator = () => {
     <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="Main" component={DrawerNavigator} />
         <Stack.Screen name='ProductDetail' component={ProductDetail}/>
-        
+
         {/* <Stack.Screen name='RatingScreen' component={RatingScreen}/>
         <Stack.Screen name='CartScreen' component={CartScreen}/> */}
         <Stack.Screen name='FilterScreen' component={FilterScreen}/>

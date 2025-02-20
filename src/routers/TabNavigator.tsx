@@ -1,22 +1,18 @@
-import { View, Text, Dimensions, StyleSheet, Platform } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { StyleSheet } from 'react-native';
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { colors } from '../contants/colors';
 import HomeNavigator from './HomeNavigator';
-import { Bag2, Global, Home2, Profile } from 'iconsax-react-native';
 import ProductNavigator from './ProductNavigator';
 import NotificationNavigator from './NotificationNavigator';
 import ProfileNavigator from './ProfileNavigator';
-import DrawerNavigator from './DrawerNavigator';
 import ChatNavigator from './ChatNavigator';
-import Material from 'react-native-vector-icons/MaterialCommunityIcons'
-import { NavigationContainer } from '@react-navigation/native';
 import TabButton from '../components/TabButton';
 
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
-    
+
     const tabs = [
       {
         id : 1,
@@ -90,7 +86,7 @@ const TabNavigator = () => {
     //     }}
     //   >
     //   </Tab.Screen>
-    //   <Tab.Screen name="ProductTab" component={ProductNavigator} 
+    //   <Tab.Screen name="ProductTab" component={ProductNavigator}
     //       options={{
     //       tabBarIcon: ({ focused }) => (
     //         <Bag2
@@ -125,12 +121,12 @@ const TabNavigator = () => {
         initialRouteName={'Home'}
         screenOptions={{
           headerShown : false,
-          tabBarStyle : styles.tabBar
+          tabBarStyle : styles.tabBar,
         }}
       >
         {
-          tabs.map((item, index)=> 
-            <Tab.Screen 
+          tabs.map((item)=>
+            <Tab.Screen
               key={item.id}
               name={item.screen}
               component={item.Component}
@@ -149,15 +145,6 @@ const TabNavigator = () => {
 
 export default TabNavigator
 
-function getWidth() {
-    let width = Dimensions.get("window").width
-  
-    // Horizontal Padding = 20...
-    width = width - 80
-  
-    // Total five Tabs...
-    return width / 5
-  }
 const styles = StyleSheet.create({
     iconContainer : {
         width : 30,

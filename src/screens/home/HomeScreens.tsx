@@ -1,10 +1,8 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet, Platform, StatusBar } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { View,ScrollView, TouchableOpacity, Image, StyleSheet, Platform, StatusBar } from 'react-native'
+import React from 'react';
 import { Button, Input, Row, Section, Space } from '@bsdaoquang/rncomponent';
 import { HambergerMenu, SearchNormal, Setting4 } from 'iconsax-react-native';
 import { colors } from '../../contants/colors';
-import Avatar from '../../components/Avatar';
 import { TextComponents } from '../../components';
 import SliderList from './components/SliderList';
 import CategoriesList from './components/CategoriesList';
@@ -13,15 +11,15 @@ import PopularProduct from './components/PopularProduct';
 import ArrivalsHDKT from './components/ArrivalsHDKT';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../../redux/reducers/authReducer';
-import { fontFamilies } from '../../contants/fontFamilies';
+import { useNavigation } from '@react-navigation/native';
 
-const HomeScreens = ({navigation} : any) => {
+const HomeScreens = () => {
   const user = useSelector(authSelector);
-  // const navigation: any = useNavigation();
+  const navigation: any = useNavigation();
   return (
     <>
       <Section styles={{
-        paddingTop: 60,
+        paddingTop: Platform.OS === 'ios' ? 60 : 40,
         paddingBottom : 5,
         borderRadius: 10,
       }}>
@@ -82,7 +80,7 @@ const HomeScreens = ({navigation} : any) => {
               />
             </View>
             <Space width={12} />
-            <Button 
+            <Button
               styles={{width:48, height: 48}}
               icon={<Setting4 variant='TwoTone' size={24} color='white' />}
               color={colors.blue}

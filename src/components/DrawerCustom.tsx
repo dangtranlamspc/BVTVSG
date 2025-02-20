@@ -1,30 +1,26 @@
-import { View, Text, StyleSheet, Platform, StatusBar, TouchableOpacity, Image, FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import RowConponents from './RowConponents'
-import ButtonComponent from './ButtonComponent'
-import TextComponents from './TextComponents'
-import { globalStyles } from '../styles/globalStyles'
-import auth from '@react-native-firebase/auth'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { localDataNames } from '../contants/localDataNames'
-import { authSelector, removeAuth } from '../redux/reducers/authReducer'
-import { useDispatch, useSelector } from 'react-redux'
-import { colors } from '../contants/colors'
-import { userRef } from '../firebase/firebaseConfig'
-import { UserModel } from '../models/UserModel'
-import { fontFamilies } from '../contants/fontFamilies'
-import { Bookmark2, Calendar, Logout, Message2, MessageQuestion, Setting2, Sms, User } from 'iconsax-react-native'
+import { View, StyleSheet, Platform, StatusBar, TouchableOpacity, Image, FlatList } from 'react-native'
+import React from 'react';
+import RowConponents from './RowConponents';
+import TextComponents from './TextComponents';
+import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localDataNames } from '../contants/localDataNames';
+import { authSelector, removeAuth } from '../redux/reducers/authReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { colors } from '../contants/colors';
+import { fontFamilies } from '../contants/fontFamilies';
+import { Bookmark2, Calendar, Logout,  MessageQuestion, Setting2, Sms, User } from 'iconsax-react-native'
 
 const DrawerCustom = ({navigation} : any) => {
   const user = useSelector(authSelector);
   const size = 20;
   const color = colors.gray;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSignOut = async () => {
     // await GoogleSignin.signOut();
     // await LoginManager.logOut();
-    await auth().signOut()
-    await AsyncStorage.removeItem(localDataNames.auth)
+    await auth().signOut();
+    await AsyncStorage.removeItem(localDataNames.auth);
     dispatch(removeAuth({}));
   };
   const profileMenu = [
@@ -59,7 +55,7 @@ const DrawerCustom = ({navigation} : any) => {
       icon: <Setting2 size={size} color={color} />,
     },
     {
-      key: 'bsct',
+      key: 'BSCTScreen',
       title: 'BÁC SĨ CÂY TRỒNG',
       icon: <MessageQuestion size={size} color={color} />,
     },
@@ -103,12 +99,12 @@ const DrawerCustom = ({navigation} : any) => {
             />
           </View>
         )}
-        <TextComponents              
+        <TextComponents
           styles= {{
             fontFamily : fontFamilies.robotoBold,
-          }} 
-          text={user.displayName} 
-          size={26} 
+          }}
+          text={user.displayName}
+          size={26}
         />
       </TouchableOpacity>
       <FlatList
@@ -122,7 +118,7 @@ const DrawerCustom = ({navigation} : any) => {
               item.key === 'SignOut'
                 ? () => handleSignOut()
                 : () => {
-                    navigation.navigate(item.key)
+                    navigation.navigate(item.key);
                   }
             }>
             {item.icon}
@@ -139,7 +135,7 @@ const DrawerCustom = ({navigation} : any) => {
               await auth().signOut()
               await AsyncStorage.removeItem(localDataNames.auth)
               dispatch(removeAuth({}));
-            }} 
+            }}
           style={[globalStyles.button, {backgroundColor: '#00F8FF33', height : 'auto'}]}>
             <TextComponents color='#00F8FF' text='ĐĂNG XUẤT'/>
         </TouchableOpacity>

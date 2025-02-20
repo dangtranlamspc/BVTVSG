@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Dimensions, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ProductModel, SubProduct } from '../../models/ProductModel';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ import ImageSwiper from '../../components/ImageSwiper';
 import { TextComponents } from '../../components';
 import { fontFamilies } from '../../contants/fontFamilies';
 import RatingComponent from '../home/components/RatingComponent';
-import { Add, Minus } from 'iconsax-react-native';
+import { Add, Minus, PathToolSquare } from 'iconsax-react-native';
 import RenderHTML from 'react-native-render-html';
 import WebView from 'react-native-webview';
 const ProductDetail = ({navigation, route}: any) => {
@@ -145,7 +145,7 @@ const ProductDetail = ({navigation, route}: any) => {
             right: 0,
             left: 0,
             padding: 20,
-            paddingTop: 50
+            paddingTop: Platform.OS === 'ios' ? 50 : 30,
           }}>
           <Row
             styles={{backgroundColor: 'transparent'}}
@@ -196,7 +196,7 @@ const ProductDetail = ({navigation, route}: any) => {
             
             globalStyles.container,
 
-            {backgroundColor: 'white', flexGrow: 1, paddingTop: 90},
+            {backgroundColor: 'white', flexGrow: 1, paddingTop: Platform.OS === 'ios' ? 90 : 100},
           ]}>
           <View
             style={[
@@ -221,7 +221,6 @@ const ProductDetail = ({navigation, route}: any) => {
               {
                 borderTopRightRadius: 20,
                 borderTopLeftRadius: 20,
-                // marginTop: -20,
                 backgroundColor: 'white',
               },
             ]}>
@@ -355,8 +354,10 @@ const ProductDetail = ({navigation, route}: any) => {
               </Section>
             )}
           </View>
+          <View style={{height : 30}}></View>
         </ScrollView>
-        <Section styles={{backgroundColor: 'white', paddingTop: 12}}>
+        
+        {/* <Section styles={{backgroundColor: 'white', paddingTop: 12}}>
           <Row>
             <Col>
               {subProductSelected && count && (
@@ -377,7 +378,7 @@ const ProductDetail = ({navigation, route}: any) => {
             </Col>
             <Col>{renderCartButton()}</Col>
           </Row>
-        </Section>
+        </Section> */}
       </>
   )
 }
