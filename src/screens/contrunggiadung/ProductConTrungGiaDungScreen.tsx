@@ -140,6 +140,12 @@ const ProductConTrungGiaDungScreen = () => {
             onPress={() => navigation.openDrawer()}
           />
           {/* <Avatar/> */}
+          <TextComponents
+            text="CÔN TRÙNG GIA DỤNG"
+            font={fontFamilies.poppinsBold}
+            size={20}
+            color={colors.blue}
+          />
           <TouchableOpacity
             onPress={() => {
               navigation.closeDrawer();

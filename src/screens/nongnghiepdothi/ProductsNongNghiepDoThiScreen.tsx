@@ -200,6 +200,12 @@ const ProductsNongNghiepDoThiScreen = () => {
             onPress={() => navigation.openDrawer()}
           />
           {/* <Avatar/> */}
+          <TextComponents
+            text="NÔNG NGHIỆP ĐÔ THỊ"
+            font={fontFamilies.poppinsBold}
+            size={20}
+            color={colors.blue}
+          />
           <TouchableOpacity
             onPress={() => {
               navigation.closeDrawer();

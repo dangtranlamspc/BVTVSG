@@ -9,7 +9,7 @@ const AuthNavigator = () => {
   return (
     <>
         <Stack.Navigator screenOptions={{headerShown : false}}>
-            <Stack.Screen name='HomeAuth' component={HomeAuth} />
+            {/* <Stack.Screen name='HomeAuth' component={HomeAuth} /> */}
             <Stack.Screen name='Login' component={Login} />
             <Stack.Screen name='SignUp' component={SignUp} />
             <Stack.Screen name='Result' component={Result} />

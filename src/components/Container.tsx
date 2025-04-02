@@ -15,7 +15,7 @@ type Props = {
     left ?: ReactNode,
     right ?: ReactNode,
     isScroll ?: boolean,
-    bottomComponent?: ReactNode
+    bottomComponent?: ReactNode,
 };
 const Container = (props : Props) => {
     const {children, title, back, left, right, isScroll, bottomComponent} = props;
@@ -27,7 +27,7 @@ const Container = (props : Props) => {
             paddingHorizontal : 16,
             paddingVertical : 16,
             paddingTop: 
-            Platform.OS === 'android' ? StatusBar.currentHeight : 1,
+            Platform.OS === 'android' ? 40 : 1,
         }}>
             {back && <Button styles={{width: 42, height: 42, paddingHorizontal: 0, paddingVertical: 0}} inline isShadow={false} icon={<MaterialIcons
                 style={{marginLeft: 8}}
